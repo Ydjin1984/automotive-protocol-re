@@ -1,0 +1,25 @@
+; j2534_proxy.def — все экспорты J2534-1 (04.04) уходят в наши обёртки.
+; Имя экспортируемой функции = имя, которое ожидает диагностическое ПО.
+;
+; ВАЖНО: сверься со своим vendor (у части адаптеров есть дополнительные экспорты,
+; например PassThruLogicalConnect/PassThruFirmwareUpdate/DllRegisterServer):
+;   dumpbin /exports "C:\Program Files (x86)\<vendor>\<dll>.dll"
+; и добавь их форвардингом:  PassThruXXX=Vendor_orig.PassThruXXX
+;
+LIBRARY J2534
+
+EXPORTS
+    PassThruOpen=Proxy_PassThruOpen
+    PassThruClose=Proxy_PassThruClose
+    PassThruConnect=Proxy_PassThruConnect
+    PassThruDisconnect=Proxy_PassThruDisconnect
+    PassThruReadMsgs=Proxy_PassThruReadMsgs
+    PassThruWriteMsgs=Proxy_PassThruWriteMsgs
+    PassThruStartPeriodicMsg=Proxy_PassThruStartPeriodicMsg
+    PassThruStopPeriodicMsg=Proxy_PassThruStopPeriodicMsg
+    PassThruStartMsgFilter=Proxy_PassThruStartMsgFilter
+    PassThruStopMsgFilter=Proxy_PassThruStopMsgFilter
+    PassThruSetProgrammingVoltage=Proxy_PassThruSetProgrammingVoltage
+    PassThruReadVersion=Proxy_PassThruReadVersion
+    PassThruGetLastError=Proxy_PassThruGetLastError
+    PassThruIoctl=Proxy_PassThruIoctl

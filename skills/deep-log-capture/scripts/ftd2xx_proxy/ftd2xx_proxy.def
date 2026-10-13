@@ -1,0 +1,67 @@
+; ftd2xx_proxy.def — экспорты прокси-DLL.
+; Обёрнутые функции (логируются): FT_Open..FT_GetQueueStatus
+; Остальные — форвардятся на FTD2XX_orig.dll.
+;
+; ВАЖНО: сверь полный список экспортов своего FTD2XX.DLL:
+;   dumpbin /exports C:\Windows\System32\FTD2XX.DLL
+; и добавь отсутствующие строки форвардинга. Если клиент грузит по ординалам,
+; добавь ординалы (например: FT_Open=Proxy_FT_Open @1) — ординалы бери из dumpbin.
+;
+LIBRARY FTD2XX
+
+EXPORTS
+    ; ---- обёрнутые (пишут лог) ----
+    FT_Open=Proxy_FT_Open
+    FT_OpenEx=Proxy_FT_OpenEx
+    FT_Close=Proxy_FT_Close
+    FT_Read=Proxy_FT_Read
+    FT_Write=Proxy_FT_Write
+    FT_SetBaudRate=Proxy_FT_SetBaudRate
+    FT_SetDataCharacteristics=Proxy_FT_SetDataCharacteristics
+    FT_SetTimeouts=Proxy_FT_SetTimeouts
+    FT_SetLatencyTimer=Proxy_FT_SetLatencyTimer
+    FT_SetFlowControl=Proxy_FT_SetFlowControl
+    FT_Purge=Proxy_FT_Purge
+    FT_ResetDevice=Proxy_FT_ResetDevice
+    FT_SetBitMode=Proxy_FT_SetBitMode
+    FT_GetQueueStatus=Proxy_FT_GetQueueStatus
+
+    ; ---- прозрачный форвардинг на оригинал ----
+    FT_ListDevices=FTD2XX_orig.FT_ListDevices
+    FT_GetDeviceInfo=FTD2XX_orig.FT_GetDeviceInfo
+    FT_GetDeviceInfoDetail=FTD2XX_orig.FT_GetDeviceInfoDetail
+    FT_CreateDeviceInfoList=FTD2XX_orig.FT_CreateDeviceInfoList
+    FT_GetDeviceInfoList=FTD2XX_orig.FT_GetDeviceInfoList
+    FT_GetDriverVersion=FTD2XX_orig.FT_GetDriverVersion
+    FT_GetLibraryVersion=FTD2XX_orig.FT_GetLibraryVersion
+    FT_GetStatus=FTD2XX_orig.FT_GetStatus
+    FT_SetDivisor=FTD2XX_orig.FT_SetDivisor
+    FT_SetDtr=FTD2XX_orig.FT_SetDtr
+    FT_ClrDtr=FTD2XX_orig.FT_ClrDtr
+    FT_SetRts=FTD2XX_orig.FT_SetRts
+    FT_ClrRts=FTD2XX_orig.FT_ClrRts
+    FT_GetModemStatus=FTD2XX_orig.FT_GetModemStatus
+    FT_SetChars=FTD2XX_orig.FT_SetChars
+    FT_SetDeadmanTimeout=FTD2XX_orig.FT_SetDeadmanTimeout
+    FT_GetLatencyTimer=FTD2XX_orig.FT_GetLatencyTimer
+    FT_GetBitMode=FTD2XX_orig.FT_GetBitMode
+    FT_SetUSBParameters=FTD2XX_orig.FT_SetUSBParameters
+    FT_SetEventNotification=FTD2XX_orig.FT_SetEventNotification
+    FT_GetEventStatus=FTD2XX_orig.FT_GetEventStatus
+    FT_StopInTask=FTD2XX_orig.FT_StopInTask
+    FT_RestartInTask=FTD2XX_orig.FT_RestartInTask
+    FT_SetResetPipeRetryCount=FTD2XX_orig.FT_SetResetPipeRetryCount
+    FT_ResetPort=FTD2XX_orig.FT_ResetPort
+    FT_CyclePort=FTD2XX_orig.FT_CyclePort
+    FT_IOCTL=FTD2XX_orig.FT_IOCTL
+    FT_GetComPortNumber=FTD2XX_orig.FT_GetComPortNumber
+    FT_EE_Read=FTD2XX_orig.FT_EE_Read
+    FT_EE_Program=FTD2XX_orig.FT_EE_Program
+    FT_EE_ReadConfig=FTD2XX_orig.FT_EE_ReadConfig
+    FT_EE_WriteConfig=FTD2XX_orig.FT_EE_WriteConfig
+    FT_EE_Erase=FTD2XX_orig.FT_EE_Erase
+    FT_EE_UARead=FTD2XX_orig.FT_EE_UARead
+    FT_EE_UAWrite=FTD2XX_orig.FT_EE_UAWrite
+    FT_EE_UASize=FTD2XX_orig.FT_EE_UASize
+    FT_EEPROM_Read=FTD2XX_orig.FT_EEPROM_Read
+    FT_EEPROM_Program=FTD2XX_orig.FT_EEPROM_Program
