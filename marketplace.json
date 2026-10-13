@@ -5,7 +5,7 @@
     {
       "name": "automotive-protocol-re",
       "source": ".",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Реверс-инжиниринг автомобильных диагностических и программных (flash) протоколов: глубокие логи (FTDI/D2XX, VCP, Frida, прокси FTD2XX.DLL и J2534), разбор трасс EDIABAS (DS2/KWP2000/ISO9141/UDS), спецификация и wire-верифицированная реплика протокола",
       "displayName": "Реверс авто-протоколов (диагностика и программирование)",
       "icon": "https://cdn.jsdelivr.net/gh/Ydjin1984/automotive-protocol-re@main/icon.png"
